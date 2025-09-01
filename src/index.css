@@ -2,41 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Medical-grade design system for NeuroVision Assist */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base colors - Clinical white and professional grays */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 27%;
 
+    /* Card system - Clean clinical cards */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 27%;
 
+    /* Popover system */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 27%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Medical blue */
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 210 100% 45%;
+    --primary-muted: 210 100% 95%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Clinical teal */
+    --secondary: 180 25% 95%;
+    --secondary-foreground: 180 100% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted - Professional grays */
+    --muted: 210 15% 95%;
+    --muted-foreground: 215 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Success green for positive results */
+    --accent: 142 76% 36%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Warning - Amber for caution */
+    --warning: 45 100% 51%;
+    --warning-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Destructive - Medical red for critical alerts */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --radius: 0.5rem;
+    /* Borders and inputs */
+    --border: 210 15% 88%;
+    --input: 210 15% 88%;
+    --ring: 210 100% 50%;
+
+    /* Medical color palette */
+    --medical-blue: 210 100% 50%;
+    --medical-teal: 180 100% 35%;
+    --medical-green: 142 76% 36%;
+    --medical-orange: 25 95% 53%;
+    --medical-red: 0 84% 60%;
+    --medical-purple: 270 95% 60%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(210 100% 50%), hsl(210 100% 60%));
+    --gradient-secondary: linear-gradient(135deg, hsl(180 100% 35%), hsl(180 100% 45%));
+    --gradient-hero: linear-gradient(135deg, hsl(210 100% 50%) 0%, hsl(180 100% 35%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(210 20% 98%) 0%, hsl(210 15% 95%) 100%);
+
+    /* Shadows - Medical-grade depth */
+    --shadow-sm: 0 1px 2px 0 hsl(210 100% 50% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(210 100% 50% / 0.1), 0 2px 4px -1px hsl(210 100% 50% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(210 100% 50% / 0.1), 0 4px 6px -2px hsl(210 100% 50% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(210 100% 50% / 0.1), 0 10px 10px -5px hsl(210 100% 50% / 0.04);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,41 +93,48 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark mode for medical interface */
+    --background: 215 25% 8%;
+    --foreground: 210 20% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 215 25% 12%;
+    --card-foreground: 210 20% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 215 25% 12%;
+    --popover-foreground: 210 20% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 210 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 210 100% 55%;
+    --primary-muted: 210 100% 15%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 215 25% 16%;
+    --secondary-foreground: 180 100% 75%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 215 20% 15%;
+    --muted-foreground: 215 15% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 142 76% 45%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --warning: 45 100% 60%;
+    --warning-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 20% 20%;
+    --input: 215 20% 20%;
+    --ring: 210 100% 60%;
+
+    --sidebar-background: 215 25% 10%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 210 100% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 215 25% 15%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 215 20% 20%;
+    --sidebar-ring: 210 100% 60%;
   }
 }
 
@@ -100,6 +144,57 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* Medical UI Components */
+  .medical-card {
+    @apply bg-card border border-border rounded-lg shadow-md hover:shadow-lg transition-all duration-200;
+  }
+
+  .medical-button-primary {
+    @apply bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg;
+  }
+
+  .medical-button-secondary {
+    @apply bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg;
+  }
+
+  .medical-input {
+    @apply border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-lg;
+  }
+
+  .dashboard-stat {
+    @apply bg-gradient-to-br p-6 rounded-xl text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
+  }
+
+  .dashboard-stat-primary {
+    @apply from-blue-500 to-blue-600;
+  }
+
+  .dashboard-stat-secondary {
+    @apply from-teal-500 to-teal-600;
+  }
+
+  .dashboard-stat-success {
+    @apply from-green-500 to-green-600;
+  }
+
+  .dashboard-stat-warning {
+    @apply from-amber-500 to-amber-600;
+  }
+
+  .dashboard-stat-danger {
+    @apply from-red-500 to-red-600;
+  }
+
+  .medical-gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent;
   }
 }
