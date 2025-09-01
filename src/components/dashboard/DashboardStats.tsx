@@ -18,43 +18,9 @@ interface DashboardStatsProps {
 }
 
 const DashboardStats: React.FC<DashboardStatsProps> = ({ userRole }) => {
-  const [dashboardStats, setDashboardStats] = useState<any[]>([]);
+  const [liveStats, setLiveStats] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const updateStats = () => {
-      const baseStats = getStatsForRole(userRole);
-      // Add some randomization to simulate real-time data
-      const updatedStats = baseStats.map(stat => ({
-        ...stat,
-        value: stat.title.includes('Time') ? stat.value : 
-               Math.floor(parseInt(stat.value) + (Math.random() - 0.5) * 4).toString(),
-        change: stat.title.includes('Time') ? stat.change :
-                `${Math.random() > 0.5 ? '+' : ''}${Math.floor(Math.random() * 10)}`
-      }));
-      setDashboardStats(updatedStats);
-      setLoading(false);
-    };
-
-    // Initial load
-    updateStats();
-
-    // Set up real-time updates every 10 seconds
-    const interval = setInterval(updateStats, 10000);
-
-    // Set up real-time subscriptions for user activity
-    const channel = supabase
-      .channel('dashboard-updates')
-      .on('presence', { event: 'sync' }, () => {
-        console.log('Dashboard presence synced');
-      })
-      .subscribe();
-
-    return () => {
-      clearInterval(interval);
-      supabase.removeChannel(channel);
-    };
-  }, [userRole]);
   const getStatsForRole = (role: string) => {
     switch (role) {
       case 'radiologist':
@@ -121,7 +87,7 @@ const DashboardStats: React.FC<DashboardStatsProps> = ({ userRole }) => {
           }
         ];
       
-      case 'specialist':
+      case 'specialist_patient':
         return [
           {
             title: "Research Cases",
@@ -190,7 +156,40 @@ const DashboardStats: React.FC<DashboardStatsProps> = ({ userRole }) => {
     }
   };
 
-  
+  useEffect(() => {
+    const updateStats = () => {
+      const baseStats = getStatsForRole(userRole);
+      // Add some randomization to simulate real-time data
+      const updatedStats = baseStats.map(stat => ({
+        ...stat,
+        value: stat.title.includes('Time') ? stat.value : 
+               Math.floor(parseInt(stat.value) + (Math.random() - 0.5) * 4).toString(),
+        change: stat.title.includes('Time') ? stat.change :
+                `${Math.random() > 0.5 ? '+' : ''}${Math.floor(Math.random() * 10)}`
+      }));
+      setLiveStats(updatedStats);
+      setLoading(false);
+    };
+
+    // Initial load
+    updateStats();
+
+    // Set up real-time updates every 10 seconds
+    const interval = setInterval(updateStats, 10000);
+
+    // Set up real-time subscriptions for user activity
+    const channel = supabase
+      .channel('dashboard-updates')
+      .on('presence', { event: 'sync' }, () => {
+        console.log('Dashboard presence synced');
+      })
+      .subscribe();
+
+    return () => {
+      clearInterval(interval);
+      supabase.removeChannel(channel);
+    };
+  }, [userRole]);
 
   if (loading) {
     return (
@@ -215,7 +214,7 @@ const DashboardStats: React.FC<DashboardStatsProps> = ({ userRole }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-      {dashboardStats.map((stat, index) => (
+      {liveStats.map((stat, index) => (
         <Card key={index} className="medical-card transition-all duration-300 hover:shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
