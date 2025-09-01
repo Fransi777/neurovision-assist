@@ -35,6 +35,57 @@ export type Database = {
         }
         Relationships: []
       }
+      scan_results: {
+        Row: {
+          classification_result: string | null
+          confidence_score: number | null
+          created_at: string
+          file_path: string | null
+          id: string
+          notes: string | null
+          patient_name: string
+          scan_date: string
+          scan_type: string
+          segmentation_data: Json | null
+          status: string
+          tumor_type: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          classification_result?: string | null
+          confidence_score?: number | null
+          created_at?: string
+          file_path?: string | null
+          id?: string
+          notes?: string | null
+          patient_name: string
+          scan_date?: string
+          scan_type?: string
+          segmentation_data?: Json | null
+          status?: string
+          tumor_type?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          classification_result?: string | null
+          confidence_score?: number | null
+          created_at?: string
+          file_path?: string | null
+          id?: string
+          notes?: string | null
+          patient_name?: string
+          scan_date?: string
+          scan_type?: string
+          segmentation_data?: Json | null
+          status?: string
+          tumor_type?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

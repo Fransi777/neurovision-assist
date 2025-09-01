@@ -18,7 +18,7 @@ interface DashboardStatsProps {
 }
 
 const DashboardStats: React.FC<DashboardStatsProps> = ({ userRole }) => {
-  const [stats, setStats] = useState<any[]>([]);
+  const [dashboardStats, setDashboardStats] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const DashboardStats: React.FC<DashboardStatsProps> = ({ userRole }) => {
         change: stat.title.includes('Time') ? stat.change :
                 `${Math.random() > 0.5 ? '+' : ''}${Math.floor(Math.random() * 10)}`
       }));
-      setStats(updatedStats);
+      setDashboardStats(updatedStats);
       setLoading(false);
     };
 
@@ -190,7 +190,7 @@ const DashboardStats: React.FC<DashboardStatsProps> = ({ userRole }) => {
     }
   };
 
-  const stats = getStatsForRole(userRole);
+  
 
   if (loading) {
     return (
@@ -215,7 +215,7 @@ const DashboardStats: React.FC<DashboardStatsProps> = ({ userRole }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-      {stats.map((stat, index) => (
+      {dashboardStats.map((stat, index) => (
         <Card key={index} className="medical-card transition-all duration-300 hover:shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
